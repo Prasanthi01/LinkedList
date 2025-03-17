@@ -1,0 +1,43 @@
+approach 1:
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        ListNode* temp=head;
+        stack<int>s;
+        while(temp!=NULL)
+        {
+            s.push(temp->val);
+            temp=temp->next;
+        }
+        ListNode* newnode=new ListNode(s.top());
+        s.pop();
+        ListNode* cur=newnode;
+        while(!s.empty())
+        {
+           cur->next=new ListNode(s.top());
+            s.pop();
+            cur=cur->next;
+        }
+        return newnode;
+    }
+};
+approach 2:
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* node=NULL;
+        while(head!=NULL)
+        {
+            ListNode* temp=head->next;
+            head->next=node;
+            node=head;
+            head=temp;
+
+        }
+        return node;
+    }
+};
